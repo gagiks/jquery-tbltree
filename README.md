@@ -7,12 +7,6 @@
 * Ability to expand/collapse by level of hierarchy
 
 
-### Basic Example
-
-<table>
-  <tr class="header"> <td>#</td><td> <div id="levels"></div>Title</td><td>Column 1</td><td>Column 2</td><td>Column 3</td></tr>
-</table>
-
 ### Usage
 #### 1. Install
 <p>Include jQuery and jQuery-ui in your page:</p>
@@ -60,6 +54,7 @@ Attributes names can be configured by options `rowAttr` and `parrentAttr`.</p>
     $( "#table1" ).tbltree();
   });
 ```
+
 
 ### Configuration
 
