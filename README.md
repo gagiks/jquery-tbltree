@@ -80,6 +80,7 @@ expanderCollapsedClass:| String | 'tbltree-expander-collapsed' | Class using for
 
 #### 2. Methods
 Method 			| Description | Example
+--------- 	| ----------- | ------- 
 showLevel   | Show level of tree we want | ```javasctipt $('#table1').tbltree('showLevel', 2) ```
 
 
