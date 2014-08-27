@@ -1,3 +1,10 @@
+|              	| asd 	|     	|     	|           	|
+|--------------	|-----	|-----	|-----	|-----------	|
+| asdasdasdasd 	| asd 	| asd 	| asd 	| asdad     	|
+|              	|     	|     	|     	| asdasdasd 	|
+| asd          	| asd 	| asd 	| asd 	|    asd    	|
+|              	|     	|     	|     	|           	|
+
 ### Features
 * Create Tree table from HTML table
 * Ability to specify column to make a tree
