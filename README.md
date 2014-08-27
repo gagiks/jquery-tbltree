@@ -1,5 +1,6 @@
 ### Features
 * Create Tree table from HTML table
+* Comparibaly fast on big tables 
 * Ability to specify column to make a tree
 * Compatible with jquery-ui $.widget
 * Ability to save the state of the tree
@@ -81,16 +82,9 @@ expanderCollapsedClass:| String | 'tbltree-expander-collapsed' | Class using for
 #### 2. Methods
 Method 			| Description | Example
 --------- 	| ----------- | ------- 
-showLevel   | Show level of tree we want | ```javasctipt 
-            |                            | $('#table1').tbltree('showLevel', 2) 
-            |                            | ```
+showLevel   | Show level of tree we want | ``` $('#table1').tbltree('showLevel', 2) ```
+expand      | Expand row with ID         | ``` $('#table1').tbltree('expand', '1.1') ```
+collapse    | Collapse row with ID       | ``` $('#table1').tbltree('collapse', '1.1') ```
+isCollapsed | Returns true if row is collpased  | ``` $('#table1').tbltree('isCollapsed', '1.1') ```
+isExpanded  | Returns true if row is expanded   | ``` $('#table1').tbltree('isExpanded', '1.1') ```
 
-
-### Rather Drive Stick?
-If you prefer to not use the automatic generator, push a branch named `gh-pages` to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.
-
-### Authors and Contributors
-You can @mention a GitHub username to generate a link to their profile. The resulting `<a>` element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (@defunkt), PJ Hyett (@pjhyett), and Tom Preston-Werner (@mojombo) founded GitHub.
-
-### Support or Contact
-Having trouble with Pages? Check out the documentation at http://help.github.com/pages or contact support@github.com and we’ll help you sort it out.
