@@ -73,15 +73,14 @@ saveState:			| Boolean | false | If true tree state will be save after page is r
 saveStateName:		| String | 'tbltree-state' | Name of cookie to save state
 levelPicker:		| String | '' | jQuery selectot of an element where we cant to render level pickers.
 expanderTemplate:	| String | `<span class="tbltree-expander"></span>` | HTML Element when you click on that will be collapse/expand branches
-levelPickerTemplate:| String | `<div class="tbltree-level-pickers">
-<span id="0" class="tbltree-level-item">[1]</span>&nbsp;
-<span id="1" class="tbltree-level-item">[2]</span>&nbsp;
-<span id="2" class="tbltree-level-item">[3]</span>&nbsp;
-<span id="3" class="tbltree-level-item">[4]</span>&nbsp;
-</div>` |
-indentTemplate:		| String | `<span class="tbltree-indent"></span>` |
-expanderExpandedClass:| String | 'tbltree-expander-expanded' |
-expanderCollapsedClass:| String | 'tbltree-expander-collapsed' |
+levelPickerTemplate:| String | `<div class="tbltree-level-pickers">\n<span id="0" class="tbltree-level-item">[1]</span>&nbsp;\n<span id="1" class="tbltree-level-item">[2]</span>&nbsp;\n<span id="2" class="tbltree-level-item">[3]</span>&nbsp;\n<span id="3" class="tbltree-level-item">[4]</span>&nbsp;\n</div>` | HTML template of level pickers, each element having class `tbltree-level-item` must have numberic id, identifying the level we want to show.
+indentTemplate:		| String | `<span class="tbltree-indent"></span>` | HTML Element that will be placed as padding, depending on the depth of nesting node
+expanderExpandedClass:| String | 'tbltree-expander-expanded' | Class using for expander element when it expanded
+expanderCollapsedClass:| String | 'tbltree-expander-collapsed' | Class using for expander element when it collapsed
+
+#### 2. Methods
+Method 			| Description | Example
+showLevel   | Show level of tree we want | ```javasctipt $('#table1').tbltree('showLevel', 2) ```
 
 
 ### Rather Drive Stick?
