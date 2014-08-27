@@ -66,14 +66,19 @@ Attributes names can be configured by options `rowAttr` and `parrentAttr`.</p>
 Parameter 			| Type | Default | Description  
 --------- 			| ---- | ------- | -----------
 rowAttr:  			| String | 'row-id' | Attribute name which is set for `<tr>` tags and identifies the ID of the row.
-parentAttr:			| String | 'parent-id' | Attribute name which is set for `<tr>` tags and identifies the ID of parent row.<br> **Note: this attribute must be skipped for toot nodes.**
+parentAttr:			| String | 'parent-id' | Attribute name which is set for `<tr>` tags and identifies the ID of parent row.<br> **Note: this attribute must be skipped for root nodes.**
 initState:			| String | 'collapsed' |
 treeColumn:			| String | 0 | Identifies the column of the table we want to make a tree.
 saveState:			| Boolean | false | If true tree state will be save after page is re-loaded
 saveStateName:		| String | 'tbltree-state' | Name of cookie to save state
 levelPicker:		| String | '' | jQuery selectot of an element where we cant to render level pickers.
 expanderTemplate:	| String | `<span class="tbltree-expander"></span>` | HTML Element when you click on that will be collapse/expand branches
-levelPickerTemplate:| String | `<div class="tbltree-level-pickers"><span id="0" class="tbltree-level-item">[1]</span>&nbsp;<span id="1" class="tbltree-level-item">[2]</span>&nbsp;<span id="2" class="tbltree-level-item">[3]</span>&nbsp;<span id="3" class="tbltree-level-item">[4]</span>&nbsp;</div>` |
+levelPickerTemplate:| String | `<div class="tbltree-level-pickers">
+<span id="0" class="tbltree-level-item">[1]</span>&nbsp;
+<span id="1" class="tbltree-level-item">[2]</span>&nbsp;
+<span id="2" class="tbltree-level-item">[3]</span>&nbsp;
+<span id="3" class="tbltree-level-item">[4]</span>&nbsp;
+</div>` |
 indentTemplate:		| String | `<span class="tbltree-indent"></span>` |
 expanderExpandedClass:| String | 'tbltree-expander-expanded' |
 expanderCollapsedClass:| String | 'tbltree-expander-collapsed' |
