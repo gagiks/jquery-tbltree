@@ -1,0 +1,37 @@
+{
+    "name": "tbltree",
+    "title": "jQuery Tbl Tree",
+    "description": "jQuery plugin making hierarchical tree from HTML tables.",
+    "keywords": [
+        "tree",
+        "table",
+        "tabletree",
+        "grid"
+    ],
+    "version": "1.0.0",
+    "author": {
+        "name": "Gagik Sukiasyan",
+        "url": "https://github.com/gagiks"
+    },
+    "maintainers": [
+        {
+            "name": "Gagik Sukiasyan",
+            "email": "gagiksukiasyan@gmail.com",
+            "url": "https://github.com/gagiks"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/gagiks/jquery-tbltree/blob/gh-pages/LICENSE"
+        }
+    ],
+    "bugs": "https://github.com/gagiks/jquery-tbltree/issues",
+    "homepage": "http://gagiks.github.io/jquery-tbltree/index.html",
+    "docs": "http://gagiks.github.io/jquery-tbltree/index.html",
+    "download": "https://github.com/gagiks/jquery-tbltree",
+    "dependencies": {
+        "jquery": ">=1.6.2",
+        "jquery-uo": ">=1.9.2"
+    }
+}
