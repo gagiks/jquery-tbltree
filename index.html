@@ -137,6 +137,7 @@ Attributes names can be configured by options `rowAttr` and `parrentAttr`.</p>
 <a href="examples/secondColumn.html">Tree on second column</a><br>
 <a href="examples/largeTable.html">Large Table with 2800 rows</a><br>
 <a href="examples/levelPickers.html">Level Pickers</a><br>
+<a href="examples/events.html">Events</a><br>
 
 
 <h3>
@@ -271,6 +272,74 @@ Attributes names can be configured by options `rowAttr` and `parrentAttr`.</p>
 </tr>
 </tbody>
 </table>
+
+<h4><a name="2-evenths" class="anchor" href="#2-events"><span class="octicon octicon-link"></span></a>2. Evenths</h4>
+
+<table>
+<thead><tr>
+<th>Event</th>
+<th>Description</th>
+<th>Example</th>
+</tr></thead>
+<tbody>
+<tr>
+	<td>create</td>
+	<td>Triggered when tree creation completed</td>
+	<td>
+		<pre>$('#table1').tbltree({
+	create: function() {
+		alert('Tree created')
+	}	
+})</pre>
+</td>
+</tr>
+<tr>
+	<td>expand</td>
+	<td>Triggered when any row is expanded</td>
+	<td>
+		<pre>$('#table1').tbltree({
+	expand: function(e, row) {
+		alert(row.attr('row-id')+ " was expadned");
+	}	
+})</pre>
+</td>
+</tr>
+<tr>
+	<td>expand</td>
+	<td>Triggered when any row is collapsed</td>
+	<td>
+		<pre>$('#table1').tbltree({
+	collapse: function(e, row) {
+		alert(row.attr('row-id')+ " was collapsed");
+	}	
+})</pre>
+</td>
+</tr>
+<tr>
+	<td>change</td>
+	<td>Triggered when any row is collapsed or expanded</td>
+	<td>
+		<pre>$('#table1').tbltree({
+	change: function(e, data) {
+		alert(data.row.attr('row-id')+ " was "+data.type);
+	}		
+})</pre>
+</td>
+</tr>
+<tr>
+	<td>showlevel</td>
+	<td>Triggered when tree level shown (for example from level pickers) </td>
+	<td>
+		<pre>$('#table1').tbltree({
+	showlevel: function(e, level) {
+		alert('Level '+level+' was shown')
+	}	
+})</pre>
+</td>
+</tr>
+</tbody>
+</table>
+
       </section>
       <footer>
         <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>

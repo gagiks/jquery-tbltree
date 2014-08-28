@@ -29,10 +29,23 @@
         indentTemplate: '<span class="tbltree-indent"></span>',
         expanderExpandedClass: 'tbltree-expander-expanded',
         expanderCollapsedClass: 'tbltree-expander-collapsed',
+	
+		
+		count: {
+			enabled: false,
+			format: '<div class="tbltree-count-wrap">(<span class="tbltree-count"></span>)</div>',
+			method: function(row) {
+				// count every row
+				return 1;
+			},
+			click: null
+		},
 		
         // callbacks
         change: null,
-        random: null
+		expand: null,
+		collapse: null,
+		showlevel: null
       },
  
 		 // the constructor
@@ -42,11 +55,11 @@
 			  .addClass( "jquery-tbltree" )
 			  
 			if (this.options.levelPicker !== "" && $(this.options.levelPicker).length > 0) {
-				var pickers = $(this.options.levelPickerTemplate);
-				pickers.find('.tbltree-level-item').click(function(){
+				this.pickers = $(this.options.levelPickerTemplate);
+				this.pickers.find('.tbltree-level-item').click(function(){
 					$this.showLevel($(this).attr('id'))
 				})
-				$(this.options.levelPicker).append(pickers);
+				$(this.options.levelPicker).append(this.pickers);
 			}
 		},
 		_init: function() {
@@ -55,7 +68,7 @@
 				$this._initTree($(this));
 			})
 		},
- 
+	 
 		getID: function(row) {
 			return row.attr(this.options.rowAttr);
 		},
@@ -113,15 +126,15 @@
             return $this.options.initState;
         },
 		
-		toggle: function (row, user) {
+		toggle: function (row) {
 			if (typeof(row) != "object") {
 				row = this.getRow(row);
 			} 
 			if (this.isCollapsed(row)) {
-				this.expand(row, user);
+				this.expand(row, 1);
 				
 			} else {
-				this.collapse(row, user);
+				this.collapse(row, 1);
 			}
 		},
 		
@@ -141,7 +154,10 @@
 				if (user) {
 					this.render(row, 'collapsed');
 					this.saveState(row);
-				} 
+					this._trigger("collapse", null, row);
+					this._trigger("change", null, {type: 'collapsed', 'row': row});
+				}
+				
 				this._getChildren(row_id).each(function(){
 					$(this).hide();
 					$this.collapse($(this), 0);
@@ -162,6 +178,8 @@
 				if (user) {
 					this.render(row, 'expanded')
 					this.saveState(row);
+					this._trigger("expand", null, row);
+					this._trigger("change", null, {type: 'expanded', 'row': row});
 				} 
 				
 				this._getChildren(row_id).each(function(){
@@ -187,6 +205,7 @@
 			$this.element.find('tr[level='+level+']').each(function(){
 					$this.collapse($(this), 1);
 			})
+			
 		},
 		
 		showLevel: function(level) {
@@ -195,6 +214,7 @@
 				$this.expandLevel(level - 1);
 			}
 			$this.collapseLevel(level);
+			this._trigger("showlevel", null, level);
 		},
 		
 		render: function(row, state) {
@@ -218,10 +238,21 @@
 			return this.element.find('tr['+this.options.parentAttr+'="'+id+'"]');
 		},
 		
+		getTreeCell: function (row) {
+			return $(row.find('td').get(this.options.treeColumn));
+		},
+		
+		isLeaf: function(row) {
+			if (row.attr('is-leaf') == "true") {
+				return true;
+			}
+			return false;
+		},
+		
 		_initExpander: function(root) {
             var $this = this;
 			
-           var cell = root.find('td').get($this.options.treeColumn);
+           var cell = this.getTreeCell(root);
 		  
             var tpl = $(this.options.expanderTemplate);
             var expander = root.find('.tbltree-expander');
@@ -231,7 +262,7 @@
 			tpl.prependTo(cell)
 			
 			tpl.click(function() {
-				$this.toggle(root, 1)
+				$this.toggle(root)
             });
 			
         },
@@ -253,8 +284,7 @@
 				this._renderExpander(cell);
             }
         },
- 
- 
+		
         _initIndent: function(cell, level) {
             cell.find('.tbltree-indent').remove();			
 			var $indent = $(this.options.indentTemplate);
@@ -282,24 +312,62 @@
 				row.show();
 			}
 			if (children.length != 0) {
-				
-				
+				var count = $this._getCount(row);
 				$.each(children, function(i, tree){
-					
 					$this._initTree($(tree), row, level+1);
+					count += $this._getCount($(tree));
 				})
-			} else {
 				
-			}
+				$this._setCount(row, count);
+			} 
 		},
-       
+		
+		_getCount: function(row) {
+			if (!this.options.count.enabled) {
+				return 0;
+			}
+		
+			var count = row.attr('count');
+			if (count != undefined) {
+				return parseInt(count);
+			}
+			count = 0;
+			if (typeof(this.options.count.method) === "function") {
+				count += parseInt(this.options.count.method(row));
+			}
+			return count;
+		},
+		
+		_setCount: function(row, count) {		
+			if (!this.options.count.enabled) {
+				return 0;
+			}
+			
+			var $this = this;
+			if (typeof(this.options.count.format) === "function") {
+				this.options.count.format(row, count);
+			} else {
+				var elem = $(this.options.count.format);
+				elem.find('.tbltree-count').text(count)
+				elem.appendTo(this.getTreeCell(row))
+				
+				if (typeof(this.options.count.click) === "function") {
+					elem.css('cursor', 'pointer').click(function(e) {
+						$this.options.count.click(e, row, count)
+					} )
+				}
+			}
+			row.attr('count', count);
+		},
+	   
       // events bound via _on are removed automatically
       // revert other modifications here
       _destroy: function() {
         this.element
-          .removeClass( "custom-colorize" )
+          .removeClass( "jquery-tbltree" )
           .enableSelection()
-          .css( "background-color", "transparent" );
+        
+		this.pickers.remove();  
       },
  
       // _setOptions is called with a hash of all options that are changing

@@ -7,3 +7,8 @@
 
 .tbltree-level-pickers {float: left;}
 .tbltree-level-pickers .tbltree-level-item {cursor: pointer;}
+.tbltree-count-wrap {
+	font-style: italic;
+	font-size: 10px;
+	float: right;
+}
