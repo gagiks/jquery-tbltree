@@ -6,6 +6,9 @@
 * Ability to save the state of the tree
 * Ability to expand/collapse by level of hierarchy
 
+### Demo
+   http://gagiks.github.io/jquery-tbltree/
+   
 
 ### Usage
 #### 1. Install
