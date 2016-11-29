@@ -1,0 +1,11 @@
+{
+  "name": "jquery.tbltree.js",
+  "main": "./js/jquery.tbltree.js",
+  "ignore": [
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "jquery": ">= 2.0.0"
+  }
+}
